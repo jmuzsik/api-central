@@ -11,7 +11,7 @@ const latestHubbleDefault = {
     "Much of the light in the universe comes from stars, and yet, star formation is still a vexing question in astronomy.\r\n\r\nTo piece together a more complete picture of star birth, astronomers have used the Hubble Space Telescope to look at star formation among galaxies in our own cosmic back yard. The survey of 50 galaxies in the local universe, called the Legacy ExtraGalactic UV Survey (LEGUS), is the sharpest, most comprehensive ultraviolet-light look at nearby star-forming galaxies.\r\n\r\nThe LEGUS survey combines new Hubble observations with archival Hubble images for star-forming spiral and dwarf galaxies, offering a valuable resource for understanding the complexities of star formation and galaxy evolution. Astronomers are releasing the star catalogs for each of the LEGUS galaxies and cluster catalogs for 30 of the galaxies, as well as images of the galaxies themselves. The catalogs provide detailed information on young, massive stars and star clusters, and how their environment affects their development.\r\n\r\nThe local universe, stretching across the gulf of space between us and the great Virgo cluster of galaxies, is ideal for study because astronomers can amass a big enough sample of galaxies, and yet, the galaxies are close enough to Earth that Hubble can resolve individual stars. The survey will also help astronomers understand galaxies in the distant universe, where rapid star formation took place.\r\n",
   credits:
     '<a href="http://www.nasa.gov">NASA</a>, <a href="http://www.spacetelescope.org">ESA</a>, and D. Calzetti (University of Massachusetts) and the LEGUS team',
-  thumbnail:
+  thumbnail_2x:
     "https://media.stsci.edu/uploads/story/thumbnail/1228/low_STSCI-H-p1827a-t-400x400.png",
 }
 
@@ -34,15 +34,17 @@ function fetchDailyNASA() {
 }
 
 function latestHubble(data) {
+  data.publication = String(new Date(data.publication))
   return {
     type: GET_LATEST_HUBBLE,
     latestHubble: {
       name: data.name,
-      url: data.url,
-      publication: data.publication,
-      abstract: data.abstract,
+      date: data.publication,
+      image: data.thumbnail_2x,
+      textContent: data.abstract,
+      popoverText: "Latest Hubble Publication",
       credits: data.credits,
-      image: data.thumbnail,
+      url: data.url,
     },
   }
 }
@@ -53,10 +55,11 @@ function dailyNASA(data) {
     dailyNASA: {
       title: data.title,
       date: data.date,
-      explanation: data.explanation,
-      hdurl: data.hdurl,
-      url: data.url,
+      image: data.hdurl,
+      textContent: data.explanation,
+      popoverText: "NASA's Daily Image",
       copyright: data.copyright,
+      url: data.url,
     },
   }
 }
@@ -64,10 +67,11 @@ function dailyNASA(data) {
 export function getLatestHubble() {
   return function(dispatch) {
     return (
-      fetchLatestHubble()
-        .then(response => response.json())
-        .then(json => dispatch(latestHubble(json))),
-      error => latestHubbleDefault
+      // fetchLatestHubble()
+      //   .then(response => response.json())
+      //   .then(json => dispatch(latestHubble(json))),
+      // error =>
+      dispatch(latestHubble(latestHubbleDefault))
     )
   }
 }
@@ -75,10 +79,11 @@ export function getLatestHubble() {
 export function getDailyNASA() {
   return function(dispatch) {
     return (
-      fetchDailyNASA()
-        .then(response => response.json())
-        .then(json => dispatch(dailyNASA(json))),
-      error => dailyNASADefault
+      // fetchDailyNASA()
+      //   .then(response => response.json())
+      //   .then(json => dispatch(dailyNASA(json))),
+      // error =>
+      dispatch(dailyNASA(dailyNASADefault))
     )
   }
 }

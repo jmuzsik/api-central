@@ -5,13 +5,17 @@ import { withRouter } from "react-router-dom"
 
 import About from "../Sections/About"
 import Home from "../Home/Home"
+import CooperHewitt from "../Sections/CooperHewitt/CooperHewitt"
 
 const styles = theme => ({
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    padding: theme.spacing.unit * 3,
-    marginTop: "3rem",
+    paddingLeft: theme.spacing.unit * 1,
+    paddingRight: theme.spacing.unit * 1,
+    paddingTop: theme.spacing.unit * 3,
+    paddingBottom: theme.spacing.unit * 3,
+    marginTop: theme.spacing.unit * 5,
   },
 })
 class Routes extends Component {
@@ -22,6 +26,7 @@ class Routes extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/about" component={About} />
+          <Route exact path="/cooper-hewitt" component={CooperHewitt} />
         </Switch>
       </main>
     )

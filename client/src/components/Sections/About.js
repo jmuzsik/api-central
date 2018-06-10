@@ -13,11 +13,7 @@ import Grid from "@material-ui/core/Grid"
 import { withRouter } from "react-router-dom"
 import { Link } from "react-router-dom"
 
-const styles = {
-  card: {
-    width: "50%",
-    margin: "3rem auto",
-  },
+const styles = theme => ({
   media: {
     height: 0,
     paddingTop: "56.25%", // 16:9
@@ -27,7 +23,13 @@ const styles = {
   goBack: {
     fill: "white",
   },
-}
+  [theme.breakpoints.up("sm")]: {
+    card: {
+      width: "50%",
+      margin: "3rem auto",
+    },
+  },
+})
 
 function About(props) {
   const { classes } = props
@@ -68,11 +70,11 @@ function About(props) {
           </Grid>
         </CardContent>
         <CardActions>
-          <Link to="/">
+          <Button component={Link}  to="/">
             <IconButton color="inherit" className={classes.menuButton}>
               <ArrowBack className={classes.goBack} />
             </IconButton>
-          </Link>
+          </Button>
           <a
             rel="noopener noreferrer"
             href="http://www.restapitutorial.com"

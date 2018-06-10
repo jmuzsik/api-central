@@ -1,7 +1,8 @@
 import { combineReducers } from "redux"
-import api from "./api"
+import NASAReducer from "./NASAReducer"
+import CooperHewittReducer from "./CooperHewittReducer"
 
 export default combineReducers({
-  // router: routerReducer,
-  api,
+  NASAReducer,
+  CooperHewittReducer,
 })

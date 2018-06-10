@@ -51,10 +51,6 @@ class DailyNASA extends React.Component {
   handleExpandClick = () => {
     this.setState({ expanded: !this.state.expanded })
   }
-
-  componentDidMount() {
-    if (this.state.isLoading) this.props.getDailyNASA()
-  }
   componentWillReceiveProps(props) {
     if (props.dailyNASA) {
       props.dailyNASA.publication = String(

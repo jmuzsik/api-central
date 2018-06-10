@@ -19,7 +19,7 @@ import MoreHoriz from "@material-ui/icons/MoreHoriz"
 import { Link, withRouter } from "react-router-dom"
 
 import {
-  mailFolderListItems,
+  navLinks,
   otherMailFolderListItems,
 } from "./components/tileData"
 
@@ -147,7 +147,7 @@ class Core extends React.Component {
               color="inherit"
               noWrap
             >
-              NASA 2.0
+              API Central
             </Typography>
             <div className={classNames(classes.aboutBtn)}>
               <IconButton
@@ -199,7 +199,7 @@ class Core extends React.Component {
             </IconButton>
           </div>
           <Divider />
-          <List>{mailFolderListItems}</List>
+          <List>{navLinks}</List>
           <Divider />
           <List>{otherMailFolderListItems}</List>
         </Drawer>

@@ -1,9 +1,10 @@
-import Button from "@material-ui/core/Button"
+import IconButton from "@material-ui/core/IconButton"
 import Popover from "@material-ui/core/Popover"
 import Typography from "@material-ui/core/Typography"
 import { withStyles } from "@material-ui/core/styles"
 import PropTypes from "prop-types"
 import React from "react"
+import Details from "@material-ui/icons/Details"
 
 const styles = theme => ({
   typography: {
@@ -38,9 +39,9 @@ class SimplePopover extends React.Component {
 
     return (
       <div>
-        <Button variant="contained" onClick={this.handleClick}>
-          Info
-        </Button>
+        <IconButton variant="contained" onClick={this.handleClick}>
+          <Details />
+        </IconButton>
         <Popover
           open={Boolean(anchorEl)}
           anchorEl={anchorEl}

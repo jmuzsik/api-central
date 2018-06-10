@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { getLatestHubble } from "../../modules/api"
+import { getLatestHubble, getDailyNASA } from "../../modules/NASAReducer"
 import React from "react"
 import PropTypes from "prop-types"
 import { withStyles } from "@material-ui/core/styles"
@@ -15,9 +15,13 @@ import Typography from "@material-ui/core/Typography"
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
 
 import Popover from "../Reuseable/Popover"
+import Footer from "../Reuseable/Footer"
 
 const styles = theme => ({
   card: {},
+  title: {
+    fontSize: "1.5rem",
+  },
   media: {
     height: 0,
     paddingTop: "56.25%", // 16:9
@@ -45,29 +49,59 @@ const styles = theme => ({
   },
 })
 
-class LatestHubble extends React.Component {
+class HomeCard extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { expanded: false, isLoading: true, latestHubble: null }
+    this.state = {
+      expanded: false,
+      isLoading: true,
+      title: undefined,
+      image: undefined,
+      date: undefined,
+      popoverText: undefined,
+      textContent: undefined,
+      footerContent: {},
+      type: props.type || "",
+    }
   }
 
   handleExpandClick = () => {
     this.setState({ expanded: !this.state.expanded })
   }
-
   componentDidMount() {
-    if (this.state.isLoading) this.props.getLatestHubble()
+    if (this.state.type === "daily nasa") {
+      this.props.dispatch(getDailyNASA())
+    } else if (this.state.type === "latest hubble") {
+      this.props.dispatch(getLatestHubble())
+    }
   }
   componentWillReceiveProps(props) {
-    if (props.latestHubble) {
+    let dataToUse, footerContent
+    if (this.state.type === "latest hubble") {
+      footerContent = {
+        credits: props.latestHubble.credits,
+        url: props.latestHubble.url,
+      }
       props.latestHubble.publication = String(
         new Date(props.latestHubble.publication)
       )
-      this.setState({
-        latestHubble: props.latestHubble,
-        isLoading: false,
-      })
+      dataToUse = props.latestHubble
+    } else if (this.state.type === "daily nasa") {
+      footerContent = {
+        credits: props.dailyNASA.copyright,
+        url: props.dailyNASA.url,
+      }
+      dataToUse = props.dailyNASA
     }
+    this.setState({
+      title: dataToUse.title,
+      image: dataToUse.image,
+      date: dataToUse.date,
+      popoverText: dataToUse.popoverText,
+      textContent: dataToUse.textContent,
+      isLoading: false,
+      footerContent,
+    })
   }
 
   render() {
@@ -77,14 +111,14 @@ class LatestHubble extends React.Component {
         {!this.state.isLoading && (
           <Card className={classes.card}>
             <CardHeader
-              action={<Popover text="Latest Hubble Telescope Image" />}
-              title={this.state.latestHubble.name}
-              subheader={this.state.latestHubble.publication}
+              classes={{
+                title: classes.title,
+              }}
+              action={<Popover text={this.state.popoverText} />}
+              title={this.state.title}
+              subheader={this.state.date}
             />
-            <CardMedia
-              className={classes.media}
-              image={this.state.latestHubble.image}
-            />
+            <CardMedia className={classes.media} image={this.state.image} />
             <CardActions className={classes.actions} disableActionSpacing>
               {/* <IconButton aria-label="Add to favorites">
                 <FavoriteIcon />
@@ -105,15 +139,10 @@ class LatestHubble extends React.Component {
             </CardActions>
             <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
               <CardContent>
-                <Typography component="p">
-                  {this.state.latestHubble.abstract}
-                </Typography>
-                <Typography
-                  className={classes.credits}
-                  component="p"
-                  dangerouslySetInnerHTML={{
-                    __html: this.state.latestHubble.credits,
-                  }}
+                <Typography component="p">{this.state.textContent}</Typography>
+                <Footer
+                  type={this.state.type}
+                  footerContent={this.state.footerContent}
                 />
               </CardContent>
             </Collapse>
@@ -124,20 +153,18 @@ class LatestHubble extends React.Component {
   }
 }
 
-LatestHubble.propTypes = {
+HomeCard.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 const mapStateToProps = store => {
   return {
-    latestHubble: store.api.latestHubble,
+    latestHubble: store.NASAReducer.latestHubble,
+    dailyNASA: store.NASAReducer.dailyNASA,
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  getLatestHubble: dispatch(getLatestHubble()),
-})
+// const mapDispatchToProps = dispatch => ({
+//   getLatestHubble: dispatch(getLatestHubble()),
+// })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles)(LatestHubble))
+export default connect(mapStateToProps)(withStyles(styles)(HomeCard))

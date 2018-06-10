@@ -2,8 +2,7 @@ import React from "react"
 import { withStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
 
-import LatestHubble from "./LatestHubble"
-import DailyNASA from "./DailyNASA"
+import HomeCard from "./HomeCard"
 import HomeText from "./HomeText"
 
 const styles = theme => ({
@@ -39,11 +38,11 @@ class Home extends React.Component {
             className={classes.cardGrid}
             spacing={Number(spacing)}
           >
-            <Grid key="Latest Hubble" xs={12} sm={6} item>
-              <LatestHubble />
-            </Grid>
             <Grid key="Daily NASA" xs={12} sm={6} item>
-              <DailyNASA />
+              <HomeCard type="daily nasa" />
+            </Grid>
+            <Grid key="Latest Hubble" xs={12} sm={6} item>
+              <HomeCard type="latest hubble" />
             </Grid>
           </Grid>
         </Grid>

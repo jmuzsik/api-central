@@ -32,7 +32,7 @@ function HomeText(props) {
       >
         Welcome to API Central!
       </Typography>
-      <Typography>The best part of many REST API's at your disposal.</Typography>
+      <Typography>The best part of many REST API's at your disposal. First, some NASA data:</Typography>
     </Grid>
   )
 }
