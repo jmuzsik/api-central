@@ -13,6 +13,9 @@ const styles = theme => ({
   control: {
     padding: theme.spacing.unit * 2,
   },
+  cardGrid: {
+    alignItems: "center",
+  },
 })
 
 class Home extends React.Component {
@@ -33,6 +36,7 @@ class Home extends React.Component {
           <Grid
             container
             justify="center"
+            className={classes.cardGrid}
             spacing={Number(spacing)}
           >
             <Grid key="Latest Hubble" xs={12} sm={6} item>
