@@ -4,6 +4,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemText from "@material-ui/core/ListItemText"
 import PaletteIcon from "@material-ui/icons/Palette"
 import HomeIcon from "@material-ui/icons/Home"
+import BookIcon from "@material-ui/icons/Book"
 import { Link } from "react-router-dom"
 
 export const navLinks = (
@@ -24,47 +25,13 @@ export const navLinks = (
         <ListItemText primary="Cooper Hewitt" />
       </ListItem>
     </Link>
-    {/*
-    <ListItem button>
-      <ListItemIcon>
-        <StarIcon />
-      </ListItemIcon>
-      <ListItemText primary="Starred" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <SendIcon />
-      </ListItemIcon>
-      <ListItemText primary="Send mail" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <DraftsIcon />
-      </ListItemIcon>
-      <ListItemText primary="Drafts" />
-    </ListItem> */}
-  </div>
-)
-
-export const otherMailFolderListItems = (
-  <div>
-    {/* <ListItem button>
-      <ListItemIcon>
-        <MailIcon />
-      </ListItemIcon>
-      <ListItemText primary="All mail" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <DeleteIcon />
-      </ListItemIcon>
-      <ListItemText primary="Trash" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <ReportIcon />
-      </ListItemIcon>
-      <ListItemText primary="Spam" />
-    </ListItem> */}
+    <Link to="/words">
+      <ListItem button>
+        <ListItemIcon>
+          <BookIcon />
+        </ListItemIcon>
+        <ListItemText primary="Words" />
+      </ListItem>
+    </Link>
   </div>
 )

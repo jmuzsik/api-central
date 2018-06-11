@@ -104,5 +104,36 @@ app.get('/api/cooper-hewitt/random-video', (req, res) => {
     .then(data => res.status(200).send(data))
     .catch(err => res.status(400).send('error'));
 });
+app.get('/api/words/:word', (req, res) => {
+  const word = req.params.word
+  console.log(word)
+  // const options = {
+  //   uri: `https://wordsapiv1.p.mashape.com/words/${word}`,
+  //   method: 'GET',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     "X-Mashape-Key": process.env.WORDS_API_KEY
+  //   },
+  //   json: true
+  // };
 
+  // request(options)
+  //   .then(data => res.status(200).send(data))
+  //   .catch(err => res.status(400).send('error'));
+});
+app.get('/api/words/random', (req, res) => {
+  const options = {
+    uri: `https://wordsapiv1.p.mashape.com/words?random=true`,
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      "X-Mashape-Key": process.env.WORDS_API_KEY
+    },
+    json: true
+  };
+
+  request(options)
+    .then(data => res.status(200).send(data))
+    .catch(err => res.status(400).send('error'));
+});
 app.listen(port, () => console.log(`Listening on port ${port}`));

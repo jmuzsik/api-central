@@ -1,5 +1,3 @@
-import { connect } from "react-redux"
-import { getLatestHubble, getDailyNASA } from "../../modules/NASAReducer"
 import React from "react"
 import PropTypes from "prop-types"
 import { withStyles } from "@material-ui/core/styles"
@@ -52,102 +50,72 @@ const styles = theme => ({
 class HomeCard extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      expanded: false,
-      isLoading: true,
-      title: undefined,
-      image: undefined,
-      date: undefined,
-      popoverText: undefined,
-      textContent: undefined,
-      footerContent: {},
-      type: props.type || "",
-    }
-  }
-
-  handleExpandClick = () => {
-    this.setState({ expanded: !this.state.expanded })
-  }
-  componentDidMount() {
-    if (this.state.type === "daily nasa") {
-      this.props.dispatch(getDailyNASA())
-    } else if (this.state.type === "latest hubble") {
-      this.props.dispatch(getLatestHubble())
-    }
-  }
-  componentWillReceiveProps(props) {
     let dataToUse, footerContent
-    if (this.state.type === "latest hubble") {
+    if (props.type === "latest hubble") {
       footerContent = {
         credits: props.latestHubble.credits,
         url: props.latestHubble.url,
       }
-      props.latestHubble.publication = String(
-        new Date(props.latestHubble.publication)
-      )
       dataToUse = props.latestHubble
-    } else if (this.state.type === "daily nasa") {
+    } else if (props.type === "daily nasa") {
       footerContent = {
         credits: props.dailyNASA.copyright,
         url: props.dailyNASA.url,
       }
       dataToUse = props.dailyNASA
     }
-    this.setState({
+    this.state = {
+      expanded: false,
       title: dataToUse.title,
       image: dataToUse.image,
       date: dataToUse.date,
       popoverText: dataToUse.popoverText,
       textContent: dataToUse.textContent,
-      isLoading: false,
       footerContent,
-    })
+      type: props.type,
+    }
+  }
+
+  handleExpandClick = () => {
+    this.setState({ expanded: !this.state.expanded })
   }
 
   render() {
     const { classes } = this.props
     return (
       <React.Fragment>
-        {!this.state.isLoading && (
-          <Card className={classes.card}>
-            <CardHeader
-              classes={{
-                title: classes.title,
-              }}
-              action={<Popover text={this.state.popoverText} />}
-              title={this.state.title}
-              subheader={this.state.date}
-            />
-            <CardMedia className={classes.media} image={this.state.image} />
-            <CardActions className={classes.actions} disableActionSpacing>
-              {/* <IconButton aria-label="Add to favorites">
-                <FavoriteIcon />
-              </IconButton>
-              <IconButton aria-label="Share">
-                <ShareIcon />
-              </IconButton> */}
-              <IconButton
-                className={classnames(classes.expand, {
-                  [classes.expandOpen]: this.state.expanded,
-                })}
-                onClick={this.handleExpandClick}
-                aria-expanded={this.state.expanded}
-                aria-label="Show more"
-              >
-                <ExpandMoreIcon />
-              </IconButton>
-            </CardActions>
-            <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-              <CardContent>
-                <Typography component="p">{this.state.textContent}</Typography>
-                <Footer
-                  type={this.state.type}
-                  footerContent={this.state.footerContent}
-                />
-              </CardContent>
-            </Collapse>
-          </Card>
-        )}
+        <Card className={classes.card}>
+          <CardHeader
+            classes={{
+              title: classes.title,
+            }}
+            action={<Popover text={this.state.popoverText} />}
+            title={this.state.title}
+            subheader={this.state.date}
+          />
+          <CardMedia className={classes.media} image={this.state.image} />
+          <CardActions className={classes.actions} disableActionSpacing>
+            <IconButton
+              className={classnames(classes.expand, {
+                [classes.expandOpen]: this.state.expanded,
+              })}
+              onClick={this.handleExpandClick}
+              aria-expanded={this.state.expanded}
+              aria-label="Show more"
+            >
+              <ExpandMoreIcon />
+            </IconButton>
+          </CardActions>
+          <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+            <CardContent>
+              <Typography component="p">{this.state.textContent}</Typography>
+              <Footer
+                type={this.state.type}
+                footerContent={this.state.footerContent}
+              />
+            </CardContent>
+          </Collapse>
+        </Card>
       </React.Fragment>
     )
   }
@@ -156,15 +124,5 @@ class HomeCard extends React.Component {
 HomeCard.propTypes = {
   classes: PropTypes.object.isRequired,
 }
-const mapStateToProps = store => {
-  return {
-    latestHubble: store.NASAReducer.latestHubble,
-    dailyNASA: store.NASAReducer.dailyNASA,
-  }
-}
 
-// const mapDispatchToProps = dispatch => ({
-//   getLatestHubble: dispatch(getLatestHubble()),
-// })
-
-export default connect(mapStateToProps)(withStyles(styles)(HomeCard))
+export default withStyles(styles)(HomeCard)

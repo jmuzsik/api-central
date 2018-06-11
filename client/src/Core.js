@@ -20,7 +20,6 @@ import { Link, withRouter } from "react-router-dom"
 
 import {
   navLinks,
-  otherMailFolderListItems,
 } from "./components/tileData"
 
 import Routes from "./components/Sections/Routes"
@@ -201,7 +200,7 @@ class Core extends React.Component {
           <Divider />
           <List>{navLinks}</List>
           <Divider />
-          <List>{otherMailFolderListItems}</List>
+          <List></List>
         </Drawer>
         {/* main file where all else will reside */}
         <Routes />

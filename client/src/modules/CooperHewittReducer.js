@@ -156,11 +156,10 @@ export function getWhatWouldMicahSay() {
 export function getRobotRothko() {
   return function(dispatch) {
     return (
-      // fetchRobotRothko()
-      //   .then(response => response.json())
-      //   .then(json => dispatch(robotRothko(json))),
-      // error => 
-      dispatch(robotRothko(robotRothkoDefault))
+      fetchRobotRothko()
+        .then(response => response.json())
+        .then(json => dispatch(robotRothko(json))),
+      error => dispatch(robotRothko(robotRothkoDefault))
     )
   }
 }
