@@ -20,7 +20,6 @@ const styles = {
 
 function RandomObject(props) {
   const { classes, randomObject } = props
-  console.log(props)
   return (
     <div>
       <Card className={classes.card}>

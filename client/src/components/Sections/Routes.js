@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom"
 import About from "../Sections/About"
 import Home from "../Home/Home"
 import CooperHewitt from "../Sections/CooperHewitt/CooperHewitt"
-import Words from "../Sections/Words/Words"
+import WordsHome from "../Sections/Words/WordsHome"
 
 const styles = theme => ({
   content: {
@@ -28,7 +28,7 @@ class Routes extends Component {
           <Route exact path="/" component={Home} />
           <Route exact path="/about" component={About} />
           <Route exact path="/cooper-hewitt" component={CooperHewitt} />
-          <Route exact path="/words" component={Words} />
+          <Route exact path="/words" component={WordsHome} />
         </Switch>
       </main>
     )

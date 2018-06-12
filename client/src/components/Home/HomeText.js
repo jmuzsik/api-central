@@ -9,7 +9,7 @@ const styles = theme => ({
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
-    textAlign: "center"
+    textAlign: "center",
   },
   headline: {
     fontWeight: "1000",
@@ -32,7 +32,10 @@ function HomeText(props) {
       >
         Welcome to API Central!
       </Typography>
-      <Typography>The best part of many REST API's at your disposal. First, some NASA data:</Typography>
+      <Typography>
+        The best part of many REST API's at your disposal. First, some NASA
+        data:
+      </Typography>
     </Grid>
   )
 }

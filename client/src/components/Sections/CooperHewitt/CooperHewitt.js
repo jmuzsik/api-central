@@ -42,7 +42,6 @@ class CooperHewitt extends React.Component {
   }
   componentDidMount() {}
   componentWillReceiveProps(props) {
-    console.log(props)
     this.setState({
       robotRothko: props.robotRothko,
       randomObject: props.randomObject,

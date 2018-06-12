@@ -71,6 +71,7 @@ class HomeCard extends React.Component {
       date: dataToUse.date,
       popoverText: dataToUse.popoverText,
       textContent: dataToUse.textContent,
+      mediaType: dataToUse.mediaType,
       footerContent,
       type: props.type,
     }
@@ -93,7 +94,14 @@ class HomeCard extends React.Component {
             title={this.state.title}
             subheader={this.state.date}
           />
-          <CardMedia className={classes.media} image={this.state.image} />
+          {this.state.mediaType === "video" ? (
+            <iframe
+              title={this.state.title}
+              src={this.state.image}
+            />
+          ) : (
+            <CardMedia className={classes.media} image={this.state.image} />
+          )}
           <CardActions className={classes.actions} disableActionSpacing>
             <IconButton
               className={classnames(classes.expand, {

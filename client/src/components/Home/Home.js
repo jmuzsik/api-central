@@ -27,9 +27,6 @@ class Home extends React.Component {
   render() {
     const { classes } = this.props
     const { spacing } = this.state
-    console.log(this.props)
-    console.log(this.props.dailyNASA && this.props.dailyNASA.image)
-    console.log(this.props.latestHubble && this.props.latestHubble.image)
     return (
       <Grid container className={classes.root} spacing={16}>
         <Grid item xs={12}>

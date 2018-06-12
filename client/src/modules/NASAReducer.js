@@ -54,8 +54,9 @@ function dailyNASA(data) {
     dailyNASA: {
       title: data.title,
       date: data.date,
-      image: data.hdurl,
+      image: data.hdurl || data.url,
       textContent: data.explanation,
+      mediaType: data.media_type,
       popoverText: "NASA's Daily Image",
       copyright: data.copyright,
       url: data.url,
@@ -66,10 +67,11 @@ function dailyNASA(data) {
 export function getLatestHubble() {
   return function(dispatch) {
     return (
-      fetchLatestHubble()
-        .then(response => response.json())
-        .then(json => dispatch(latestHubble(json))),
-      error => dispatch(latestHubble(latestHubbleDefault))
+      // fetchLatestHubble()
+      //   .then(response => response.json())
+      //   .then(json => dispatch(latestHubble(json))),
+      // error => 
+      dispatch(latestHubble(latestHubbleDefault))
     )
   }
 }
@@ -77,10 +79,11 @@ export function getLatestHubble() {
 export function getDailyNASA() {
   return function(dispatch) {
     return (
-      fetchDailyNASA()
-        .then(response => response.json())
-        .then(json => dispatch(dailyNASA(json))),
-      error => dispatch(dailyNASA(dailyNASADefault))
+      // fetchDailyNASA()
+      //   .then(response => response.json())
+      //   .then(json => dispatch(dailyNASA(json))),
+      // error => 
+      dispatch(dailyNASA(dailyNASADefault))
     )
   }
 }

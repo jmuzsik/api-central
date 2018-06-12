@@ -110,13 +110,6 @@ function robotRothko(data) {
   }
 }
 function randomVideo(data) {
-  console.log(
-    findDeep(
-      data,
-      ["video", "formats", "mp4", "720_subtitled"],
-      "https://videos.collection.cooperhewitt.org/DIGVID0244_720_s.mp4"
-    )
-  )
   return {
     type: GET_RANDOM_VIDEO,
     randomVideo: {
