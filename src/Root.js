@@ -26,16 +26,16 @@ const theme = createMuiTheme({
         "sans-serif",
         '"Apple Color Emoji"',
         '"Segoe UI Emoji"',
-        '"Segoe UI Symbol"',
-      ].join(","),
+        '"Segoe UI Symbol"'
+      ].join(",")
     },
     primary: blueGrey,
     secondary: amber,
-    error: red,
+    error: red
   },
   typography: {
-    fontSize: 18,
-  },
+    fontSize: 18
+  }
 })
 
 class Root extends Component {

@@ -11,8 +11,6 @@ import Rothko from "./Rothko"
 import RandomObject from "./RandomObject"
 import Video from "./Video"
 
-import './CooperNavigation.css'
-
 function TabContainer(props) {
   const { children, dir } = props
 
@@ -32,10 +30,6 @@ const styles = theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
     position: "relative",
-  },
-  container: {
-    display: "flex",
-    alignItems: "center",
   },
 })
 

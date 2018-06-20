@@ -171,7 +171,7 @@ class Core extends React.Component {
                 open={open}
                 onClose={this.handleClose}
               >
-                <Link classes={{}} to={"/about"}>
+                <Link to={"/about"} style={{ textDecoration: 'none', border: 'none' }}>
                   <MenuItem onClick={this.handleClose}>About</MenuItem>
                 </Link>
               </Menu>

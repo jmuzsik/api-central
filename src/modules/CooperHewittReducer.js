@@ -61,16 +61,24 @@ const randomVideoDefault = {
 }
 
 function fetchRandomObject() {
-  return fetch("/api/cooper-hewitt/random-object")
+    return fetch(
+    "https://3few4kmu3i.execute-api.us-east-1.amazonaws.com/dev/api/cooper-hewitt/random-object"
+  )
 }
 function fetchWhatWouldMicahSay() {
-  return fetch("/api/cooper-hewitt/what-would-micah-say")
+    return fetch(
+    "https://3few4kmu3i.execute-api.us-east-1.amazonaws.com/dev/api/cooper-hewitt/what-would-micah-say"
+  )
 }
 function fetchRobotRothko() {
-  return fetch("/api/cooper-hewitt/robot-rothko")
+    return fetch(
+    "https://3few4kmu3i.execute-api.us-east-1.amazonaws.com/dev/api/cooper-hewitt/robot-rothko"
+  )
 }
 function fetchRandomVideo() {
-  return fetch("/api/cooper-hewitt/random-video")
+    return fetch(
+    "https://3few4kmu3i.execute-api.us-east-1.amazonaws.com/dev/api/cooper-hewitt/random-video"
+  )
 }
 
 function randomObject(data) {
@@ -127,22 +135,20 @@ function randomVideo(data) {
 export function getRandomObject() {
   return function(dispatch) {
     return (
-      // fetchRandomObject()
-      //   .then(response => response.json())
-      //   .then(json => dispatch(randomObject(json))),
-      // error => 
-      dispatch(randomObject(randomObjectDefault))
+      fetchRandomObject()
+        .then(response => response.json())
+        .then(json => dispatch(randomObject(json))),
+      error => dispatch(randomObject(randomObjectDefault))
     )
   }
 }
 export function getWhatWouldMicahSay() {
   return function(dispatch) {
     return (
-      // fetchWhatWouldMicahSay()
-      //   .then(response => response.json())
-      //   .then(json => dispatch(whatWouldMicahSay(json))),
-      // error => 
-      dispatch(whatWouldMicahSay(whatWouldMicahSayDefault))
+      fetchWhatWouldMicahSay()
+        .then(response => response.json())
+        .then(json => dispatch(whatWouldMicahSay(json))),
+      error => dispatch(whatWouldMicahSay(whatWouldMicahSayDefault))
     )
   }
 }
@@ -152,18 +158,17 @@ export function getRobotRothko() {
       fetchRobotRothko()
         .then(response => response.json())
         .then(json => dispatch(robotRothko(json))),
-      error => dispatch(robotRothko(robotRothkoDefault))
+      error =>  dispatch(robotRothko(robotRothkoDefault))
     )
   }
 }
 export function getRandomVideo() {
   return function(dispatch) {
     return (
-      // fetchRandomVideo()
-      //   .then(response => response.json())
-      //   .then(json => dispatch(randomVideo(json))),
-      // error => 
-      dispatch(randomVideo(randomVideoDefault))
+      fetchRandomVideo()
+        .then(response => response.json())
+        .then(json => dispatch(randomVideo(json))),
+      error => dispatch(randomVideo(randomVideoDefault))
     )
   }
 }

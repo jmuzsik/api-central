@@ -9,7 +9,7 @@ import { Link } from "react-router-dom"
 
 export const navLinks = (
   <div>
-    <Link to="/">
+    <Link to="/" style={{ textDecoration: 'none' }}>
       <ListItem button>
         <ListItemIcon>
           <HomeIcon />
@@ -17,15 +17,15 @@ export const navLinks = (
         <ListItemText primary="Home" />
       </ListItem>
     </Link>
-    <Link to="/cooper-hewitt">
+    <Link to="/cooper-hewitt" style={{ textDecoration: 'none' }}>
       <ListItem button>
         <ListItemIcon>
           <PaletteIcon />
         </ListItemIcon>
-        <ListItemText primary="Cooper Hewitt" />
+        <ListItemText primary="Museum" />
       </ListItem>
     </Link>
-    <Link to="/words">
+    <Link to="/words" style={{ textDecoration: 'none' }}>
       <ListItem button>
         <ListItemIcon>
           <BookIcon />

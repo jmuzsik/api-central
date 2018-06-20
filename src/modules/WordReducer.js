@@ -4,15 +4,22 @@ const USER_INPUTTED_WORDS = "USER_INPUTTED_WORDS"
 const RANDOM_WORD = "RANDOM_WORD"
 
 const defaultWords = {
-  word: "quantum leap",
-  results: [
-    {
-      definition: "a sudden large increase or advance",
-      examples: [
-        "this may not insure success but it will represent a quantum leap from last summer",
-      ],
-    },
-  ],
+  crab: { word: "crab", definition: "a quarrelsome grouch" },
+  coconut: {
+    word: "coconut",
+    definition:
+      "tall palm tree bearing coconuts as fruits; widely planted throughout the tropics",
+  },
+  elephant: { word: "elephant", definition: "five-toed pachyderm" },
+  extraneous: {
+    word: "extraneous",
+    definition:
+      "not belonging to that in which it is contained; introduced from an outside source",
+  },
+  radioactive: {
+    word: "radioactive",
+    definition: "exhibiting or caused by radioactivity",
+  },
 }
 
 const randomWordDefault = {
@@ -26,8 +33,8 @@ const randomWordDefault = {
     },
   ],
   syllables: {
-    list: ["quant", "um", "leap"]
-  }
+    list: ["quant", "um", "leap"],
+  },
 }
 
 function fetchUserWords(words) {
@@ -39,14 +46,15 @@ function fetchRandomWord() {
 }
 
 function userWords(data) {
-  console.log(data)
-  return {
-    type: USER_INPUTTED_WORDS,
-    userWords: {
-      definition: data.definition,
-    },
-  }
+  // create a poem with the data here and send it as the sole object to the front-end
+  // return {
+  //   type: USER_INPUTTED_WORDS,
+  //   poem: {
+  //     poem:
+  //   },
+  // }
 }
+
 function randomWord(data) {
   console.log(data)
   return {
@@ -76,7 +84,7 @@ export function getRandomWord() {
       // fetchRandomWord()
       //   .then(response => response.json())
       //   .then(json => dispatch(randomWord(json))),
-      // error => 
+      // error =>
       dispatch(randomWord(randomWordDefault))
     )
   }
@@ -95,7 +103,7 @@ export default (state = initialState, action) => {
       })
     case USER_INPUTTED_WORDS:
       return Object.assign({}, state, {
-        userWords: action.userWords,
+        poem: action.poem,
       })
     default:
       return state

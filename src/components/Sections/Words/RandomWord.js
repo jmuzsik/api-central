@@ -7,11 +7,9 @@ import CardContent from "@material-ui/core/CardContent"
 import Typography from "@material-ui/core/Typography"
 
 const styles = theme => ({
-  header: theme.mixins.gutters({
-    paddingTop: 16,
-    paddingBottom: 16,
-    marginTop: theme.spacing.unit * 3,
-  }),
+  header: {
+    padding: 0
+  },
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
@@ -27,6 +25,9 @@ const styles = theme => ({
   pos: {
     marginBottom: 12,
   },
+  padText: {
+    padding: 10
+  }
 })
 
 class RandomWord extends React.Component {
@@ -47,10 +48,10 @@ class RandomWord extends React.Component {
     return (
       <React.Fragment>
         <Paper className={classes.header} elevation={4}>
-          <Typography variant="headline" component="h4" gutterBottom>
+          <Typography className={classes.padText} variant="headline" component="h4" gutterBottom>
             Welcome to a fun word thingamagig
           </Typography>
-          <Typography component="p" gutterBottom>
+          <Typography className={classes.padText} component="p" gutterBottom>
             Instructions: with the random word below fill in 5 words that come
             to mind in relation to it.
           </Typography>

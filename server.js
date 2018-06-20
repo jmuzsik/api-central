@@ -8,7 +8,7 @@ var { findDeep } = require('./utils');
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.get('/api/latest-hubble', (req, res) => {
+app.get('/api/nasa/latest-hubble', (req, res) => {
   const options = {
     uri: 'http://hubblesite.org/api/v3/news_release/last',
     method: 'GET',
@@ -23,7 +23,7 @@ app.get('/api/latest-hubble', (req, res) => {
     .catch(err => res.status(400).send('error'));
 });
 
-app.get('/api/daily-nasa', (req, res) => {
+app.get('/api/nasa/daily-nasa', (req, res) => {
   const options = {
     uri: `https://api.nasa.gov/planetary/apod?api_key=${
       process.env.NASA_API_KEY

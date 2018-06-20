@@ -1,20 +1,32 @@
 {
-  "name": "example-create-react-app-express",
-  "version": "1.0.0",
-  "scripts": {
-    "client": "cd client && yarn start",
-    "server": "nodemon server.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
-  },
+  "name": "nasa",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:5000/",
   "dependencies": {
-    "dotenv": "6.0.0",
-    "express": "^4.16.2",
-    "nodemon": "1.17.5",
-    "request": "2.87.0",
-    "request-promise": "4.2.2",
-    "unirest": "0.5.1"
+    "@material-ui/core": "1.2.0",
+    "@material-ui/icons": "1.1.0",
+    "aws-amplify": "0.4.4",
+    "aws-amplify-react": "0.1.50",
+    "history": "4.7.2",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-redux": "5.0.7",
+    "react-router": "4.3.1",
+    "react-router-dom": "4.3.1",
+    "react-scripts": "1.1.4",
+    "react-swipeable-views": "0.12.13",
+    "redux": "4.0.0",
+    "redux-devtools": "3.4.1",
+    "redux-devtools-extension": "2.13.2",
+    "redux-logger": "3.0.6",
+    "redux-thunk": "2.3.0"
   },
-  "devDependencies": {
-    "concurrently": "^3.5.0"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && aws s3 sync build/ s3://mrbucket-1"
   }
 }
