@@ -21,7 +21,6 @@ function Rothko(props) {
 
   return (
     <React.Fragment>
-      <Typography gutterBottom align="center">Random Rothko-like art:</Typography>
       <Card style={{ backgroundColor: robotRothko.background }}>
         <CardContent>
           <Typography
@@ -47,7 +46,7 @@ function Rothko(props) {
               boxShadow: `1px 2px ${robotRothko.palette2}`,
             }}
           >
-            benevolent
+            benev
           </Typography>
           <Typography
             className={classes.pos}

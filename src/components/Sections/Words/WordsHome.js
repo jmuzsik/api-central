@@ -1,10 +1,13 @@
 import React from "react"
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
+import store from "../../../store"
 import PropTypes from "prop-types"
 import { withStyles } from "@material-ui/core/styles"
 import TextField from "@material-ui/core/TextField"
 import Button from "@material-ui/core/Button"
+import CircularProgress from "@material-ui/core/CircularProgress"
+import yellow from "@material-ui/core/colors/yellow"
 
 import { getRandomWord, getUserWords } from "../../../modules/WordReducer"
 import RandomWord from "./RandomWord"
@@ -12,13 +15,24 @@ import RandomWord from "./RandomWord"
 const styles = theme => ({
   container: {
     display: "flex",
-    flexWrap: "wrap",
+    flexWrap: "wrap"
   },
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 200,
+    width: 200
   },
+  button: {
+    margin: theme.spacing.unit
+  },
+  progress: {
+    margin: "auto"
+  },
+  progressContainer: {
+    height: "90vh",
+    display: "flex",
+    justifyContent: "center"
+  }
 })
 
 class WordsHome extends React.Component {
@@ -30,14 +44,15 @@ class WordsHome extends React.Component {
       word2: "",
       word3: "",
       word4: "",
-      word5: "",
+      word5: ""
     }
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
 
   componentWillReceiveProps(props) {
     this.setState({
-      randomWord: props.randomWord,
+      randomWord: props.randomWord
     })
   }
 
@@ -53,12 +68,12 @@ class WordsHome extends React.Component {
     ) {
       this.setState({
         [name]: event.target.value,
-        disabled: false,
+        disabled: false
       })
     } else {
       this.setState({
         [name]: event.target.value,
-        disabled: true,
+        disabled: true
       })
     }
   }
@@ -76,21 +91,29 @@ class WordsHome extends React.Component {
       "," +
       this.state.word5
 
-    this.props.getUserWords(wordsString)
+    store.dispatch(getUserWords(wordsString))
+  }
+
+  handleClick(e) {
+    e.preventDefault()
+    store.dispatch(getRandomWord())
   }
 
   render() {
     const { classes } = this.props
     return (
       <div>
-        {this.state.randomWord && (
+        {this.state.randomWord ? (
           <form
             className={classes.container}
             noValidate
             autoComplete="off"
             onSubmit={this.handleSubmit}
           >
-            <RandomWord randomWord={this.state.randomWord} />
+            <RandomWord
+              randomWord={this.state.randomWord}
+              handleClick={this.handleClick}
+            />
             <TextField
               id={`word1`}
               name={`Word 1`}
@@ -150,6 +173,14 @@ class WordsHome extends React.Component {
               Submit
             </Button>
           </form>
+        ) : (
+          <div className={classes.progressContainer}>
+            <CircularProgress
+              className={classes.progress}
+              style={{ color: yellow[500] }}
+              thickness={10}
+            />
+          </div>
         )}
       </div>
     )
@@ -157,19 +188,18 @@ class WordsHome extends React.Component {
 }
 
 WordsHome.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 }
 
 const mapStateToProps = store => {
-  console.log(store.WordReducer)
   return {
-    randomWord: store.WordReducer.randomWord,
+    randomWord: store.WordReducer.randomWord
   }
 }
 
 const mapDispatchToProps = dispatch => ({
   getRandomWord: dispatch(getRandomWord()),
-  getUserWords: bindActionCreators(getUserWords, dispatch),
+  getUserWords: bindActionCreators(getUserWords, dispatch)
 })
 
 export default connect(

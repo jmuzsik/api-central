@@ -18,6 +18,8 @@ import {
   getRobotRothko
 } from "../../../modules/CooperHewittReducer"
 import CooperNavigation from "./CooperNavigation"
+import RefreshContainer from "./RefreshContainer"
+import store from "../../../store"
 
 const styles = theme => ({
   card: {
@@ -42,7 +44,6 @@ const styles = theme => ({
       margin: "auto"
     }
   }
-
 })
 
 class CooperHewitt extends React.Component {
@@ -56,6 +57,7 @@ class CooperHewitt extends React.Component {
       randomVideo: undefined,
       robotRothko: undefined
     }
+    this.handleClick = this.handleClick.bind(this)
   }
   componentDidMount() {}
   componentWillReceiveProps(props) {
@@ -65,6 +67,16 @@ class CooperHewitt extends React.Component {
       randomVideo: props.randomVideo,
       whatWouldMicahSay: props.whatWouldMicahSay
     })
+  }
+  handleClick(e, name) {
+    e.preventDefault()
+    if (name === "rothko") {
+      store.dispatch(getRobotRothko())
+    } else if (name === "random-object") {
+      store.dispatch(getRandomObject())
+    } else {
+      store.dispatch(getRandomVideo())
+    }
   }
   render() {
     const { classes } = this.props
@@ -96,7 +108,7 @@ class CooperHewitt extends React.Component {
               </CardContent>
               <CardActions>
                 <a
-                  style={{ textDecoration: 'none' }}
+                  style={{ textDecoration: "none" }}
                   rel="noopener noreferrer"
                   href="https://www.cooperhewitt.org/"
                   target="_blank"
@@ -106,6 +118,7 @@ class CooperHewitt extends React.Component {
                   </Button>
                 </a>
               </CardActions>
+              <RefreshContainer handleClick={this.handleClick} />
               <CooperNavigation
                 randomObject={this.state.randomObject}
                 randomVideo={this.state.randomVideo}

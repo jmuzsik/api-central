@@ -23,14 +23,14 @@ function TabContainer(props) {
 
 TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
-  dir: PropTypes.string.isRequired,
+  dir: PropTypes.string.isRequired
 }
 
 const styles = theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    position: "relative",
-  },
+    position: "relative"
+  }
 })
 
 class CooperNavigation extends React.Component {
@@ -40,7 +40,7 @@ class CooperNavigation extends React.Component {
       value: 0,
       robotRothko: props.robotRothko,
       randomObject: props.randomObject,
-      randomVideo: props.randomVideo,
+      randomVideo: props.randomVideo
     }
   }
 
@@ -54,7 +54,6 @@ class CooperNavigation extends React.Component {
 
   render() {
     const { classes, theme } = this.props
-
     return (
       <div className={classes.root}>
         <AppBar className={classes.container} position="static" color="default">
@@ -64,27 +63,27 @@ class CooperNavigation extends React.Component {
             indicatorColor="primary"
             textColor="primary"
           >
-            <Tab label="Rothko" />
             <Tab label="Object" />
+            <Tab label="Rothko" />
             <Tab label="Video" />
           </Tabs>
         </AppBar>
         <SwipeableViews
           classes={{
-            "react-swipeable-view-container": classes.container,
+            "react-swipeable-view-container": classes.container
           }}
           axis={theme.direction === "rtl" ? "x-reverse" : "x"}
           index={this.state.value}
           onChangeIndex={this.handleChangeIndex}
         >
+          <TabContainer dir={theme.direction}>
+            <RandomObject randomObject={this.props.randomObject} />
+          </TabContainer>
           <TabContainer className={classes.rothko} dir={theme.direction}>
-            <Rothko robotRothko={this.state.robotRothko} />
+            <Rothko robotRothko={this.props.robotRothko} />
           </TabContainer>
           <TabContainer dir={theme.direction}>
-            <RandomObject randomObject={this.state.randomObject} />
-          </TabContainer>
-          <TabContainer dir={theme.direction}>
-            <Video randomVideo={this.state.randomVideo} />
+            <Video randomVideo={this.props.randomVideo} />
           </TabContainer>
         </SwipeableViews>
       </div>
@@ -94,7 +93,7 @@ class CooperNavigation extends React.Component {
 
 CooperNavigation.propTypes = {
   classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired
 }
 
 export default withStyles(styles, { withTheme: true })(CooperNavigation)

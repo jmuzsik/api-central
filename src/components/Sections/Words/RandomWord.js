@@ -4,7 +4,8 @@ import { withStyles } from "@material-ui/core/styles"
 import Paper from "@material-ui/core/Paper"
 import Card from "@material-ui/core/Card"
 import CardContent from "@material-ui/core/CardContent"
-import Typography from "@material-ui/core/Typography"
+import Button from "@material-ui/core/Button"
+import { Typography } from "@material-ui/core"
 
 const styles = theme => ({
   header: {
@@ -13,20 +14,31 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 200,
+    width: 200
   },
   menu: {
-    width: 200,
+    width: 200
   },
   title: {
     marginBottom: 16,
-    fontSize: 14,
+    fontSize: 14
   },
   pos: {
-    marginBottom: 12,
+    marginBottom: 12
   },
   padText: {
     padding: 10
+  },
+  container: {
+    display: "flex",
+    justifyContent: "center",
+    paddingBottom: theme.spacing.unit * 2
+  },
+  buttonTitle: {
+    paddingTop: theme.spacing.unit * 2,
+    width: "75%",
+    paddingBottom: theme.spacing.unit * 2,
+    margin: "auto"
   }
 })
 
@@ -38,8 +50,17 @@ class RandomWord extends React.Component {
       randomWord: props.randomWord.word,
       syllables: props.randomWord.syllables,
       randomWordDef: props.randomWord.definition,
-      randomWordEx: props.randomWord.example,
+      randomWordEx: props.randomWord.example
     }
+  }
+
+  componentWillReceiveProps(props) {
+    this.setState({
+      randomWord: props.randomWord.word,
+      syllables: props.randomWord.syllables,
+      randomWordDef: props.randomWord.definition,
+      randomWordEx: props.randomWord.example
+    })
   }
 
   render() {
@@ -48,7 +69,12 @@ class RandomWord extends React.Component {
     return (
       <React.Fragment>
         <Paper className={classes.header} elevation={4}>
-          <Typography className={classes.padText} variant="headline" component="h4" gutterBottom>
+          <Typography
+            className={classes.padText}
+            variant="headline"
+            component="h4"
+            gutterBottom
+          >
             Welcome to a fun word thingamagig
           </Typography>
           <Typography className={classes.padText} component="p" gutterBottom>
@@ -83,6 +109,23 @@ class RandomWord extends React.Component {
               </Typography>
             </CardContent>
           </Card>
+          <Typography
+            className={classes.buttonTitle}
+            align="center"
+            gutterBottom
+          >
+            Don't like the word? Get a new one.
+          </Typography>
+          <div className={classes.container}>
+            <Button
+              value="rothko"
+              onClick={this.props.handleClick}
+              variant="outlined"
+              className={classes.button}
+            >
+              New word
+            </Button>
+          </div>
         </Paper>
       </React.Fragment>
     )
@@ -90,7 +133,7 @@ class RandomWord extends React.Component {
 }
 
 RandomWord.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 }
 
 export default withStyles(styles)(RandomWord)

@@ -154,6 +154,7 @@ export function getWhatWouldMicahSay() {
 }
 export function getRobotRothko() {
   return function(dispatch) {
+    console.log('need this to happen')
     return (
       fetchRobotRothko()
         .then(response => response.json())
