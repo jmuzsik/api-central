@@ -39,6 +39,9 @@ const styles = theme => ({
     width: "75%",
     paddingBottom: theme.spacing.unit * 2,
     margin: "auto"
+  },
+  randomWord: {
+    wordBreak: "break-word"
   }
 })
 
@@ -86,18 +89,25 @@ class RandomWord extends React.Component {
               <Typography className={classes.title} color="textSecondary">
                 Random Word:
               </Typography>
-              <Typography variant="headline" component="h2">
-                {this.state.syllables
-                  ? this.state.syllables.reduce((accum, syllable, i) => {
-                      if (i === 0) {
-                        accum = syllable
-                        return accum
-                      } else {
-                        return accum + "•" + syllable
-                      }
-                    }, "")
-                  : this.state.randomWord}
+              <Typography
+                className={classes.randomWord}
+                variant="headline"
+                component="h2"
+              >
+                {this.state.randomWord} <br />
               </Typography>
+              <Typography component="p">
+                {this.state.syllables &&
+                  this.state.syllables.reduce((accum, syllable, i) => {
+                    if (i === 0) {
+                      accum = syllable
+                      return accum
+                    } else {
+                      return accum + "•" + syllable
+                    }
+                  }, "")}
+              </Typography>
+
               <Typography component="p">
                 {this.state.randomWordDef}
                 {this.state.randomWordEx && (

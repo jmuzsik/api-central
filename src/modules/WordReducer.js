@@ -1,4 +1,4 @@
-import { findDeep } from "../utilities"
+import { findDeep, createPoem } from "../utilities"
 
 const USER_INPUTTED_WORDS = "USER_INPUTTED_WORDS"
 const RANDOM_WORD = "RANDOM_WORD"
@@ -38,6 +38,7 @@ const randomWordDefault = {
 }
 
 function fetchUserWords(words) {
+  console.log(words)
   return fetch(
     `https://3few4kmu3i.execute-api.us-east-1.amazonaws.com/dev/api/words/poem/${words}`
   )
@@ -49,14 +50,14 @@ function fetchRandomWord() {
 }
 
 function userWords(data) {
-  console.log(data)
-  // create a poem with the data here and send it as the sole object to the front-end
-  // return {
-  //   type: USER_INPUTTED_WORDS,
-  //   poem: {
-  //     poem:
-  //   },
-  // }
+  const poem = createPoem(data)
+  console.log(poem)
+  return {
+    type: USER_INPUTTED_WORDS,
+    poem: {
+      poem
+    }
+  }
 }
 
 function randomWord(data) {
@@ -74,12 +75,9 @@ export function getUserWords(words) {
   return function(dispatch) {
     return (
       fetchUserWords(words)
-        .then(response => {
-          console.log(response)
-          return response.json()
-        })
-        .then(json => dispatch(userWords(defaultWords))),
-      error => dispatch(userWords(defaultWords))
+        .then(response => response.json())
+        .then(json => dispatch(userWords(json))),
+      error =>  dispatch(userWords(defaultWords))
     )
   }
 }
@@ -100,7 +98,6 @@ const initialState = {
 }
 
 export default (state = initialState, action) => {
-  console.log(action.poem)
   switch (action.type) {
     case RANDOM_WORD:
       return Object.assign({}, state, {
