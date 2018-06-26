@@ -1,27 +1,29 @@
-import React from "react"
-import { connect } from "react-redux"
-import { withStyles } from "@material-ui/core/styles"
-import Grid from "@material-ui/core/Grid"
+import React from 'react'
+import { connect } from 'react-redux'
+import { withStyles } from '@material-ui/core/styles'
+import Grid from '@material-ui/core/Grid'
 
-import { getLatestHubble, getDailyNASA } from "../../modules/NASAReducer"
-import HomeCard from "./HomeCard"
-import HomeText from "./HomeText"
+import { getLatestHubble, getDailyNASA } from '../../modules/NASAReducer'
+import HomeCard from './HomeCard'
+import HomeText from './HomeText'
+import { dailyNASACode, latestHubbleCode } from '../../codeSnippets'
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
+    padding: theme.spacing.unit * 3
   },
   control: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing.unit * 3
   },
   cardGrid: {
-    alignItems: "center",
-  },
+    alignItems: 'center'
+  }
 })
 
 class Home extends React.Component {
   state = {
-    spacing: "16",
+    spacing: '16'
   }
 
   render() {
@@ -39,16 +41,26 @@ class Home extends React.Component {
             className={classes.cardGrid}
             spacing={Number(spacing)}
           >
-            {this.props.dailyNASA && this.props.dailyNASA.image && (
-              <Grid key="Daily NASA" xs={12} sm={6} item>
-                <HomeCard dailyNASA={this.props.dailyNASA} type="daily nasa" />
-              </Grid>
-            )}
-            {this.props.latestHubble && this.props.latestHubble.image && (
-              <Grid key="Latest Hubble" xs={12} sm={6} item>
-                <HomeCard latestHubble={this.props.latestHubble} type="latest hubble" />
-              </Grid>
-            )}
+            {this.props.dailyNASA &&
+              this.props.dailyNASA.image && (
+                <Grid key="Daily NASA" xs={12} sm={6} item>
+                  <HomeCard
+                    dailyNASA={this.props.dailyNASA}
+                    type="daily nasa"
+                    codeToDisplay={dailyNASACode}
+                  />
+                </Grid>
+              )}
+            {this.props.latestHubble &&
+              this.props.latestHubble.image && (
+                <Grid key="Latest Hubble" xs={12} sm={6} item>
+                  <HomeCard
+                    latestHubble={this.props.latestHubble}
+                    codeToDisplay={latestHubbleCode}
+                    type="latest hubble"
+                  />
+                </Grid>
+              )}
           </Grid>
         </Grid>
       </Grid>
@@ -59,13 +71,13 @@ class Home extends React.Component {
 const mapStateToProps = store => {
   return {
     latestHubble: store.NASAReducer.latestHubble,
-    dailyNASA: store.NASAReducer.dailyNASA,
+    dailyNASA: store.NASAReducer.dailyNASA
   }
 }
 
 const mapDispatchToProps = dispatch => ({
   getLatestHubble: dispatch(getLatestHubble()),
-  getDailyNASA: dispatch(getDailyNASA()),
+  getDailyNASA: dispatch(getDailyNASA())
 })
 
 export default connect(

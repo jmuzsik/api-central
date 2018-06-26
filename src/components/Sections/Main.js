@@ -1,14 +1,14 @@
-import React from "react"
-import { withStyles } from "@material-ui/core/styles"
-import { Link, withRouter } from "react-router-dom"
+import React from 'react'
+import { withStyles } from '@material-ui/core/styles'
+import { Link, withRouter } from 'react-router-dom'
 
 const styles = theme => ({
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
-    marginTop: "3rem",
-  },
+    marginTop: '3rem'
+  }
 })
 class Main extends React.Component {
   render() {

@@ -1,15 +1,23 @@
-import IconButton from "@material-ui/core/IconButton"
-import Popover from "@material-ui/core/Popover"
-import Typography from "@material-ui/core/Typography"
-import { withStyles } from "@material-ui/core/styles"
-import PropTypes from "prop-types"
-import React from "react"
-import Details from "@material-ui/icons/Details"
+import IconButton from '@material-ui/core/IconButton'
+import Popover from '@material-ui/core/Popover'
+import Typography from '@material-ui/core/Typography'
+import { withStyles } from '@material-ui/core/styles'
+import PropTypes from 'prop-types'
+import React from 'react'
+import Details from '@material-ui/icons/Details'
 
 const styles = theme => ({
   typography: {
     margin: theme.spacing.unit * 2,
+    fontFamily: "Menlo, Monaco, 'Courier New', monospace",
+    display: 'block',
+    whiteSpace: 'pre'
   },
+  [theme.breakpoints.down('xs')]: {
+    typography: {
+      fontSize: '.4rem'
+    }
+  }
 })
 
 class SimplePopover extends React.Component {
@@ -17,19 +25,19 @@ class SimplePopover extends React.Component {
     super(props)
     this.state = {
       anchorEl: null,
-      text: props.text,
+      text: props.text
     }
   }
 
   handleClick = event => {
     this.setState({
-      anchorEl: event.currentTarget,
+      anchorEl: event.currentTarget
     })
   }
 
   handleClose = () => {
     this.setState({
-      anchorEl: null,
+      anchorEl: null
     })
   }
 
@@ -43,16 +51,17 @@ class SimplePopover extends React.Component {
           <Details />
         </IconButton>
         <Popover
+          className={classes.rootPopover}
           open={Boolean(anchorEl)}
           anchorEl={anchorEl}
           onClose={this.handleClose}
           anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "center",
+            vertical: 'bottom',
+            horizontal: 'center'
           }}
           transformOrigin={{
-            vertical: "top",
-            horizontal: "center",
+            vertical: 'top',
+            horizontal: 'center'
           }}
         >
           <Typography className={classes.typography}>
@@ -65,7 +74,7 @@ class SimplePopover extends React.Component {
 }
 
 SimplePopover.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 }
 
 export default withStyles(styles)(SimplePopover)

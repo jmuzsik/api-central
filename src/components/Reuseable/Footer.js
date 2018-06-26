@@ -1,12 +1,12 @@
-import React from "react"
-import Typography from "@material-ui/core/Typography"
-import Button from "@material-ui/core/Button"
+import React from 'react'
+import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
 
 export default function Footer(obj) {
   const { type, footerContent } = obj
   let returnJSX
   switch (type) {
-    case "daily nasa": {
+    case 'daily nasa': {
       let copyright
       if (footerContent.copyright) {
         copyright = (
@@ -15,7 +15,7 @@ export default function Footer(obj) {
           </Typography>
         )
       } else {
-        copyright = ""
+        copyright = ''
       }
       returnJSX = (
         <React.Fragment>
@@ -29,7 +29,7 @@ export default function Footer(obj) {
       )
       break
     }
-    case "latest hubble": {
+    case 'latest hubble': {
       returnJSX = (
         <React.Fragment>
           <Typography
@@ -45,7 +45,7 @@ export default function Footer(obj) {
       )
       break
     }
-    default: 
+    default:
       return returnJSX
   }
   return returnJSX

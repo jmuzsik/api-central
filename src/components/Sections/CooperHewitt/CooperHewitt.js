@@ -1,47 +1,45 @@
-import { connect } from "react-redux"
-import React from "react"
-import PropTypes from "prop-types"
-import { withStyles } from "@material-ui/core/styles"
-import Card from "@material-ui/core/Card"
-import CardActions from "@material-ui/core/CardActions"
-import CardContent from "@material-ui/core/CardContent"
-import CardMedia from "@material-ui/core/CardMedia"
-import Button from "@material-ui/core/Button"
-import Typography from "@material-ui/core/Typography"
-import CircularProgress from "@material-ui/core/CircularProgress"
-import yellow from "@material-ui/core/colors/yellow"
+import { connect } from 'react-redux'
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Card from '@material-ui/core/Card'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
+import store from '../../../store'
 
 import {
   getWhatWouldMicahSay,
   getRandomObject,
   getRandomVideo,
   getRobotRothko
-} from "../../../modules/CooperHewittReducer"
-import CooperNavigation from "./CooperNavigation"
-import RefreshContainer from "./RefreshContainer"
-import store from "../../../store"
+} from '../../../modules/CooperHewittReducer'
+import CooperNavigation from './CooperNavigation'
+import RefreshContainer from './RefreshContainer'
+import Loading from '../../Reuseable/Loading'
+import Popover from '../../Reuseable/Popover'
+import { whatWouldMicahSayCode } from '../../../codeSnippets'
 
 const styles = theme => ({
   card: {
-    maxWidth: 250,
-    margin: theme.spacing.unit * 3
+    margin: theme.spacing.unit
   },
   media: {
     height: 0,
-    paddingTop: "56.25%" // 16:9
+    paddingTop: '56.25%' // 16:9
   },
-  progress: {
-    margin: "auto"
+  popover: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
-  progressContainer: {
-    height: "90vh",
-    display: "flex",
-    justifyContent: "center"
-  },
-  [theme.breakpoints.up("sm")]: {
+  [theme.breakpoints.up('sm')]: {
     card: {
       maxWidth: 1000,
-      margin: "auto"
+      margin: 'auto',
+      marginTop: theme.spacing.unit * 3
     }
   }
 })
@@ -58,8 +56,8 @@ class CooperHewitt extends React.Component {
       robotRothko: undefined
     }
     this.handleClick = this.handleClick.bind(this)
+    this.newMicah = this.newMicah.bind(this)
   }
-  componentDidMount() {}
   componentWillReceiveProps(props) {
     this.setState({
       robotRothko: props.robotRothko,
@@ -70,13 +68,17 @@ class CooperHewitt extends React.Component {
   }
   handleClick(e, name) {
     e.preventDefault()
-    if (name === "rothko") {
+    if (name === 'rothko') {
       store.dispatch(getRobotRothko())
-    } else if (name === "random-object") {
+    } else if (name === 'random-object') {
       store.dispatch(getRandomObject())
     } else {
       store.dispatch(getRandomVideo())
     }
+  }
+  newMicah(e) {
+    e.preventDefault()
+    store.dispatch(getWhatWouldMicahSay())
   }
   render() {
     const { classes } = this.props
@@ -99,21 +101,24 @@ class CooperHewitt extends React.Component {
                   align="center"
                   component="h3"
                 >
-                  Welcome!
+                  Cooper Hewitt!
                 </Typography>
-                <Typography component="p">
+                <Typography component="p" onClick={this.newMicah}>
                   <strong>Micah says: </strong>
                   {this.state.whatWouldMicahSay.micahSays}
+                </Typography>
+                <Typography component="p" className={classes.popover}>
+                  Code: <Popover text={whatWouldMicahSayCode} />{' '}
                 </Typography>
               </CardContent>
               <CardActions>
                 <a
-                  style={{ textDecoration: "none" }}
+                  style={{ textDecoration: 'none', margin: 'auto' }}
                   rel="noopener noreferrer"
                   href="https://www.cooperhewitt.org/"
                   target="_blank"
                 >
-                  <Button size="small" color="primary">
+                  <Button align="center" size="small" color="primary">
                     Museum Site
                   </Button>
                 </a>
@@ -127,13 +132,7 @@ class CooperHewitt extends React.Component {
             </Card>
           </React.Fragment>
         ) : (
-          <div className={classes.progressContainer}>
-            <CircularProgress
-              className={classes.progress}
-              style={{ color: yellow[500] }}
-              thickness={10}
-            />
-          </div>
+          <Loading />
         )}
       </div>
     )

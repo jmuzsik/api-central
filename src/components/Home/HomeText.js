@@ -1,23 +1,24 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { withStyles } from "@material-ui/core/styles"
-import Typography from "@material-ui/core/Typography"
-import Grid from "@material-ui/core/Grid"
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
+import Grid from '@material-ui/core/Grid'
 
 const styles = theme => ({
   root: {
-    display: "flex",
-    justifyContent: "center",
-    flexDirection: "column",
-    textAlign: "center",
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    paddingTop: theme.spacing.unit * 5,
+    paddingBottom: theme.spacing.unit * 5
   },
   headline: {
-    fontWeight: "1000",
+    fontWeight: '1000'
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular,
-  },
+    fontWeight: theme.typography.fontWeightRegular
+  }
 })
 
 function HomeText(props) {
@@ -28,12 +29,13 @@ function HomeText(props) {
         className={classes.headline}
         variant="headline"
         align="center"
-        gutterBottom={true}
+        gutterBottom
       >
-        Welcome to API Central!
+        Welcome!
       </Typography>
       <Typography>
-        The best part of many REST API's at your disposal. First, some NASA
+        The best part of many REST API's at your disposal as well as code
+        snippets for each lambda function that get's called! First, some NASA
         data:
       </Typography>
     </Grid>
@@ -41,7 +43,7 @@ function HomeText(props) {
 }
 
 HomeText.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 }
 
 export default withStyles(styles)(HomeText)

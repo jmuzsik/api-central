@@ -1,20 +1,28 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { withStyles } from "@material-ui/core/styles"
-import Paper from "@material-ui/core/Paper"
-import Card from "@material-ui/core/Card"
-import CardContent from "@material-ui/core/CardContent"
-import Button from "@material-ui/core/Button"
-import { Typography } from "@material-ui/core"
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import Button from '@material-ui/core/Button'
+import { Typography } from '@material-ui/core'
 
 const styles = theme => ({
   header: {
-    padding: 0
+    padding: 0,
+    margin: `${theme.spacing.unit * 3}px auto`
+  },
+  headline: {
+    fontSize: '2.5rem',
+    marginTop: '.35rem'
   },
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     width: 200
+  },
+  card: {
+    margin: '.35rem'
   },
   menu: {
     width: 200
@@ -26,29 +34,38 @@ const styles = theme => ({
   pos: {
     marginBottom: 12
   },
-  padText: {
-    padding: 10
+  instructions: {
+    padding: theme.spacing.unit * 3
   },
   container: {
-    display: "flex",
-    justifyContent: "center",
+    display: 'flex',
+    justifyContent: 'center',
     paddingBottom: theme.spacing.unit * 2
   },
   buttonTitle: {
     paddingTop: theme.spacing.unit * 2,
-    width: "75%",
+    width: '75%',
     paddingBottom: theme.spacing.unit * 2,
-    margin: "auto"
+    margin: 'auto'
   },
   randomWord: {
-    wordBreak: "break-word"
+    wordBreak: 'break-word'
+  },
+  [theme.breakpoints.up('sm')]: {
+    header: {
+      width: '75%'
+    }
+  },
+  [theme.breakpoints.up('md')]: {
+    header: {
+      width: '50%'
+    }
   }
 })
 
 class RandomWord extends React.Component {
   constructor(props) {
     super(props)
-    console.log(props)
     this.state = {
       randomWord: props.randomWord.word,
       syllables: props.randomWord.syllables,
@@ -73,16 +90,24 @@ class RandomWord extends React.Component {
       <React.Fragment>
         <Paper className={classes.header} elevation={4}>
           <Typography
-            className={classes.padText}
+            className={classes.headline}
             variant="headline"
             component="h4"
+            align="center"
             gutterBottom
           >
-            Welcome to a fun word thingamagig
+            <u>Words</u>
           </Typography>
-          <Typography className={classes.padText} component="p" gutterBottom>
-            Instructions: with the random word below fill in 5 words that come
-            to mind in relation to it.
+          <Typography
+            className={classes.instructions}
+            component="p"
+            gutterBottom
+          >
+            Instructions:{' '}
+            <i>
+              with the random word below fill in 5 words that come to mind in
+              relation to it.
+            </i>
           </Typography>
           <Card className={classes.card}>
             <CardContent>
@@ -103,9 +128,9 @@ class RandomWord extends React.Component {
                       accum = syllable
                       return accum
                     } else {
-                      return accum + "•" + syllable
+                      return accum + '•' + syllable
                     }
-                  }, "")}
+                  }, '')}
               </Typography>
 
               <Typography component="p">

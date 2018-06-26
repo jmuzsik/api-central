@@ -1,12 +1,12 @@
-import React, { Component } from "react"
-import { Route, Switch } from "react-router-dom"
-import { withStyles } from "@material-ui/core/styles"
-import { withRouter } from "react-router-dom"
+import React, { Component } from 'react'
+import { Route, Switch } from 'react-router-dom'
+import { withStyles } from '@material-ui/core/styles'
+import { withRouter } from 'react-router-dom'
 
-import About from "../Sections/About"
-import Home from "../Home/Home"
-import CooperHewitt from "../Sections/CooperHewitt/CooperHewitt"
-import WordsHome from "../Sections/Words/WordsHome"
+import About from '../Sections/About'
+import Home from '../Home/Home'
+import CooperHewitt from '../Sections/CooperHewitt/CooperHewitt'
+import WordsHome from '../Sections/Words/WordsHome'
 
 const styles = theme => ({
   content: {
@@ -17,7 +17,8 @@ const styles = theme => ({
     paddingTop: theme.spacing.unit * 3,
     paddingBottom: theme.spacing.unit * 3,
     marginTop: theme.spacing.unit * 5,
-  },
+    width: '100%'
+  }
 })
 class Routes extends Component {
   render() {

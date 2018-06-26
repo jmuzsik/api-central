@@ -5,7 +5,7 @@ export const findDeep = (data, pathArr, fallback) => {
     if (
       Array.isArray(data[path]) ||
       findDeep.isObject(data[path]) ||
-      typeof data[path] === "string"
+      typeof data[path] === 'string'
     ) {
       if (i === len - 1) {
         return data[path]
@@ -17,14 +17,14 @@ export const findDeep = (data, pathArr, fallback) => {
   }
 }
 
-findDeep.isObject = obj => obj && typeof obj === "object"
+findDeep.isObject = obj => obj && typeof obj === 'object'
 
 function convertObjToArr(textObj) {
   const words = Object.keys(textObj)
   return words.reduce((accum, wordKey) => {
     accum.push(wordKey)
     if (textObj[wordKey].definition) {
-      const definitionArr = textObj[wordKey].definition.split(" ")
+      const definitionArr = textObj[wordKey].definition.split(' ')
       definitionArr.forEach(word => {
         accum.push(word)
       })
@@ -49,18 +49,18 @@ function createTitle(textObj) {
   const shortestWord = words.reduce((accum, currentWord) => {
     if (currentWord.length < accum.length) return currentWord
     return accum
-  }, "an extremely long word that no one will input a longer word for")
+  }, 'an extremely long word that no one will input a longer word for')
   const longestWord = words.reduce((accum, currentWord) => {
     if (currentWord.length > accum.length) return currentWord
     return accum
-  }, "")
+  }, '')
   let title = shortestWord[0].toUpperCase() + shortestWord.slice(1)
   let flag = true
   for (let i = 0; i < words.length; i++) {
     if (words[i] !== shortestWord && words[i] !== longestWord) {
       if (flag) {
         title +=
-          " " +
+          ' ' +
           words[i][0].toUpperCase() +
           words[i].slice(1, Math.floor(words[i].length / 2))
         flag = false
@@ -69,7 +69,7 @@ function createTitle(textObj) {
       }
     }
     if (i === words.length - 1)
-      title += " " + words[i][0].toUpperCase() + words[i].slice(1)
+      title += ' ' + words[i][0].toUpperCase() + words[i].slice(1)
   }
   return title
 }
@@ -80,36 +80,40 @@ export function createPoem(textObj) {
   const title = createTitle(textObj)
   const max = shortWords.length > longerWords.length ? shortWords : longerWords
   const min = shortWords.length < longerWords.length ? shortWords : longerWords
-  const poemLength = Math.floor(max.length / 2)
-  let poem = title + "\n\n"
+  const poemLength = Math.floor(max.length)
+  let poem = [title]
 
   let i = 0,
-    j = 0
+    j = 0,
+    temp = ''
   if (min === shortWords) {
     for (; i < poemLength; i++) {
+      temp = ''
       if (min.length === i) j = 0
       // longerWords should be twice in a row only right before the new line
-      if (i % 3 === 0) {
-        poem +=
-          shortWords[j] + " " + longerWords[i] + " " + longerWords[i + 1] + "\n"
+      if (i % 3 === 0 && i + 1 !== poemLength) {
+        temp +=
+          shortWords[j] + ' ' + longerWords[i] + ' ' + longerWords[i + 1] + '\n'
         i++
       } else {
-        poem += shortWords[j] + " " + longerWords[i] + " "
+        temp += shortWords[j] + ' ' + longerWords[i] + ' '
         j++
       }
+      if (temp.slice(temp.length - 1) === '\n') poem.push(temp)
     }
   } else {
     for (; i < poemLength; i++) {
+      temp = ''
       if (min.length === i) j = 0
-
-      if (i % 3 === 0) {
-        poem +=
-          shortWords[j] + " " + longerWords[j] + " " + longerWords[j + 1] + "\n"
+      if (i % 3 === 0 && i + 1 !== poemLength) {
+        temp +=
+          shortWords[j] + ' ' + longerWords[j] + ' ' + longerWords[j + 1] + '\n'
         j += 2
       } else {
-        poem += shortWords[i] + " " + longerWords[j] + " "
+        temp += shortWords[i] + ' ' + longerWords[j] + ' '
         j++
       }
+      if (temp.slice(temp.length - 1) === '\n') poem.push(temp)
     }
   }
   return poem
