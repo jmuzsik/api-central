@@ -46,7 +46,7 @@ class SimplePopover extends React.Component {
     const { anchorEl } = this.state
 
     return (
-      <div>
+      <React.Fragment>
         <IconButton variant="contained" onClick={this.handleClick}>
           <Details />
         </IconButton>
@@ -68,7 +68,7 @@ class SimplePopover extends React.Component {
             {this.state.text}
           </Typography>
         </Popover>
-      </div>
+      </React.Fragment>
     )
   }
 }

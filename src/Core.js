@@ -18,9 +18,9 @@ import MoreHoriz from '@material-ui/icons/MoreHoriz'
 
 import { Link, withRouter } from 'react-router-dom'
 
-import { navLinks } from './components/tileData'
+import { navLinks } from './components/Separate/tileData'
 
-import Routes from './components/Sections/Routes'
+import Routes from './Routes'
 
 const drawerWidth = 240
 
@@ -58,10 +58,17 @@ const styles = theme => ({
     position: 'relative',
     whiteSpace: 'nowrap',
     width: drawerWidth,
+    maxWidth: '75%',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen
-    })
+    }),
+    [theme.breakpoints.up('sm')]: {
+      maxWidth: '50%'
+    },
+    [theme.breakpoints.up('md')]: {
+      maxWidth: '25%'
+    }
   },
   drawerPaperClose: {
     overflowX: 'hidden',
