@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid'
 import { getLatestHubble, getDailyNASA } from '../modules/NASAReducer'
 import HomeCard from '../components/Home/HomeCard'
 import HomeText from '../components/Home/HomeText'
+import Loading from '../components/Reuseable/Loading'
 import { dailyNASACode, latestHubbleCode } from '../codeSnippets'
 
 const styles = theme => ({
@@ -30,40 +31,46 @@ class Home extends React.Component {
     const { classes } = this.props
     const { spacing } = this.state
     return (
-      <Grid container className={classes.root} spacing={16}>
-        <Grid item xs={12}>
-          <HomeText />
-        </Grid>
-        <Grid item xs={12}>
-          <Grid
-            container
-            justify="center"
-            className={classes.cardGrid}
-            spacing={Number(spacing)}
-          >
-            {this.props.dailyNASA &&
-              this.props.dailyNASA.image && (
-                <Grid key="Daily NASA" xs={12} sm={6} item>
-                  <HomeCard
-                    dailyNASA={this.props.dailyNASA}
-                    type="daily nasa"
-                    codeToDisplay={dailyNASACode}
-                  />
-                </Grid>
-              )}
-            {this.props.latestHubble &&
-              this.props.latestHubble.image && (
-                <Grid key="Latest Hubble" xs={12} sm={6} item>
-                  <HomeCard
-                    latestHubble={this.props.latestHubble}
-                    codeToDisplay={latestHubbleCode}
-                    type="latest hubble"
-                  />
-                </Grid>
-              )}
+      <React.Fragment>
+        {this.props.latestHubble && this.props.dailyNASA ? (
+          <Grid container className={classes.root} spacing={16}>
+            <Grid item xs={12}>
+              <HomeText />
+            </Grid>
+            <Grid item xs={12}>
+              <Grid
+                container
+                justify="center"
+                className={classes.cardGrid}
+                spacing={Number(spacing)}
+              >
+                {this.props.dailyNASA &&
+                  this.props.dailyNASA.image && (
+                    <Grid key="Daily NASA" xs={12} sm={6} item>
+                      <HomeCard
+                        dailyNASA={this.props.dailyNASA}
+                        type="daily nasa"
+                        codeToDisplay={dailyNASACode}
+                      />
+                    </Grid>
+                  )}
+                {this.props.latestHubble &&
+                  this.props.latestHubble.image && (
+                    <Grid key="Latest Hubble" xs={12} sm={6} item>
+                      <HomeCard
+                        latestHubble={this.props.latestHubble}
+                        codeToDisplay={latestHubbleCode}
+                        type="latest hubble"
+                      />
+                    </Grid>
+                  )}
+              </Grid>
+            </Grid>
           </Grid>
-        </Grid>
-      </Grid>
+        ) : (
+          <Loading />
+        )}
+      </React.Fragment>
     )
   }
 }
