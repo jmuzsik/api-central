@@ -9,7 +9,7 @@ export const history = createHistory()
 
 const initialState = {}
 let store
-if (process.env.REACT_APP_STAGE !== 'production') {
+if (process.env.NODE_ENV === 'development') {
   const middleware = composeWithDevTools(
     applyMiddleware(
       thunk,

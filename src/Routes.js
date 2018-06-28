@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 import { withRouter } from 'react-router-dom'
 
+import NotFound from './components/Separate/NotFound'
 import About from './components/Separate/About'
 import Home from './containers/Home'
 import CooperHewitt from './containers/CooperHewitt'
@@ -30,6 +31,7 @@ class Routes extends Component {
           <Route exact path="/about" component={About} />
           <Route exact path="/cooper-hewitt" component={CooperHewitt} />
           <Route exact path="/words" component={WordsHome} />
+          <Route component={NotFound} />
         </Switch>
       </main>
     )

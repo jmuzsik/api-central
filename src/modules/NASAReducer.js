@@ -41,10 +41,10 @@ function latestHubble(data) {
   return {
     type: GET_LATEST_HUBBLE,
     latestHubble: {
-      name: data.name,
+      title: data.name,
       date: data.publication,
       image: data.keystone_image_1x,
-      textContent: data.abstract,
+      hubbleText: data.abstract,
       popoverText: 'Latest Hubble Publication',
       credits: data.credits,
       url: data.url

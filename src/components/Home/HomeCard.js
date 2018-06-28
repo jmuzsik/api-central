@@ -73,7 +73,8 @@ class HomeCard extends React.Component {
       mediaType: dataToUse.mediaType,
       footerContent,
       type: props.type,
-      codeToDisplay: props.codeToDisplay
+      codeToDisplay: props.codeToDisplay,
+      hubbleText: dataToUse.hubbleText
     }
   }
 
@@ -113,7 +114,14 @@ class HomeCard extends React.Component {
           </CardActions>
           <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
             <CardContent>
-              <Typography component="p">{this.state.textContent}</Typography>
+              {this.state.textContent ? (
+                <Typography component="p">{this.state.textContent}</Typography>
+              ) : (
+                <Typography
+                  contentEditable='true' 
+                  dangerouslySetInnerHTML={{ __html: this.state.hubbleText }}
+                />
+              )}
               <Footer
                 type={this.state.type}
                 footerContent={this.state.footerContent}
