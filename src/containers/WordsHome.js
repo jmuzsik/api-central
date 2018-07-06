@@ -13,7 +13,7 @@ import Poem from '../components/Words/Poem'
 
 const styles = theme => ({})
 
-class WordsHome extends React.Component {
+class WordsHome extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = {

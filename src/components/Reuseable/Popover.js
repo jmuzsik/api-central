@@ -20,7 +20,7 @@ const styles = theme => ({
   }
 })
 
-class SimplePopover extends React.Component {
+class SimplePopover extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = {

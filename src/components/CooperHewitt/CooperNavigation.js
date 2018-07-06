@@ -38,7 +38,7 @@ const styles = theme => ({
   }
 })
 
-class CooperNavigation extends React.Component {
+class CooperNavigation extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = {

@@ -44,7 +44,7 @@ const styles = theme => ({
   }
 })
 
-class CooperHewitt extends React.Component {
+class CooperHewitt extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = {

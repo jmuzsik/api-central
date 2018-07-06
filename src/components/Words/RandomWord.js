@@ -71,7 +71,7 @@ const styles = theme => ({
   }
 })
 
-class RandomWord extends React.Component {
+class RandomWord extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = {

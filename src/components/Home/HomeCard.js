@@ -47,7 +47,7 @@ const styles = theme => ({
   }
 })
 
-class HomeCard extends React.Component {
+class HomeCard extends React.PureComponent {
   constructor(props) {
     super(props)
     let dataToUse, footerContent

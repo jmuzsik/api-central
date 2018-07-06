@@ -10,7 +10,7 @@ const styles = theme => ({
     marginTop: '3rem'
   }
 })
-class Main extends React.Component {
+class Main extends React.PureComponent {
   render() {
     const { classes, theme } = this.props
 
