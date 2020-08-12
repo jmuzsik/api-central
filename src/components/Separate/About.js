@@ -42,32 +42,6 @@ function About(props) {
           title="REST API"
         />
         <CardContent>
-          <Grid>
-            <Typography
-              className={classes.headline}
-              variant="headline"
-              align="center"
-              gutterBottom={true}
-            >
-              API's contain lots of data, let's display it
-            </Typography>
-            <Typography paragraph>
-              First of all, what is a REST API? In absolutely simplified terms,
-              it is a way to get web programs to talk one another over the web.
-              As in, pass textual data from one network to another. More info if
-              you press the Learn More button below.
-            </Typography>
-            <Typography paragraph>
-              This is a well made site that holds a bunch of API's. Mainly
-              focused on displaying information in images. It's focused on
-              displaying info more on the deep/ethical side of thing's but there
-              is a decent blend.
-            </Typography>
-            <Typography paragraph>
-              To the left is a list of the API's to check out.
-            </Typography>
-            <Typography paragraph>Thank's for visiting the page.</Typography>
-          </Grid>
         </CardContent>
         <CardActions>
           <Button component={Link} to="/">

@@ -61,24 +61,16 @@ const randomVideoDefault = {
 }
 
 function fetchRandomObject() {
-  return fetch(
-    'https://3few4kmu3i.execute-api.us-east-1.amazonaws.com/dev/api/cooper-hewitt/random-object'
-  )
+  return fetch('/hewitt/object');
 }
 function fetchWhatWouldMicahSay() {
-  return fetch(
-    'https://3few4kmu3i.execute-api.us-east-1.amazonaws.com/dev/api/cooper-hewitt/what-would-micah-say'
-  )
+  return fetch('/hewitt/micah');
 }
 function fetchRobotRothko() {
-  return fetch(
-    'https://3few4kmu3i.execute-api.us-east-1.amazonaws.com/dev/api/cooper-hewitt/robot-rothko'
-  )
+  return fetch('/hewitt/rothko');
 }
 function fetchRandomVideo() {
-  return fetch(
-    'https://3few4kmu3i.execute-api.us-east-1.amazonaws.com/dev/api/cooper-hewitt/random-video'
-  )
+  return fetch('/hewitt/video');
 }
 
 function randomObject(data) {

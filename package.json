@@ -2,13 +2,12 @@
   "name": "api-gateway",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000/",
   "dependencies": {
     "@material-ui/core": "1.2.0",
     "@material-ui/icons": "1.1.0",
     "history": "4.7.2",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-redux": "5.0.7",
     "react-router": "4.3.1",
     "react-router-dom": "4.3.1",
@@ -27,8 +26,5 @@
     "eject": "react-scripts eject",
     "deploy": "npm run build && aws s3 sync build/ s3://mrbucket-1"
   },
-  "devDependencies": {
-    "eslint": "5.0.1",
-    "eslint-plugin-react": "7.10.0"
-  }
+  "proxy": "http://localhost:3333"
 }

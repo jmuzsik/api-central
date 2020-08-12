@@ -1,67 +1,67 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { withStyles } from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
+import React from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 
-import Popover from '../Reuseable/Popover'
-import { wordPoemCode } from '../../codeSnippets'
+import Popover from "../Reuseable/Popover";
+import { wordPoemCode } from "../../codeSnippets";
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: theme.mixins.gutters({
     paddingTop: 16,
     paddingBottom: 16,
-    margin: `${theme.spacing.unit * 3}px auto`
+    margin: `${theme.spacing.unit * 3}px auto`,
   }),
   container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center'
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
-  [theme.breakpoints.up('sm')]: {
+  poem: {
+    whiteSpace: "break-spaces",
+  },
+  [theme.breakpoints.up("sm")]: {
     root: {
-      width: '75%'
-    }
+      width: "75%",
+    },
   },
   popover: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up("md")]: {
     root: {
-      width: '50%'
-    }
-  }
-})
+      width: "50%",
+    },
+  },
+});
 
 function Poem(props) {
-  const { classes, poem } = props
-  const title = poem[0]
-  const actualPoem = poem.slice(1)
+  const { classes, poem } = props;
+
   return (
     <React.Fragment>
       <Paper className={classes.root} elevation={4}>
         <Typography align="center" variant="headline" gutterBottom>
-          <i>{title}</i>
+          <i>Poem</i>
         </Typography>
         <div className={classes.container}>
-          {actualPoem.map((line, index) => (
-            <Typography key={`${line}-index`} component="p">
-              {line}
-            </Typography>
-          ))}
+          <Typography component="p" className={classes.poem}>
+            {poem}
+          </Typography>
         </div>
       </Paper>
       <Typography className={classes.popover}>
-        Code Snippet: <Popover text={wordPoemCode} />{' '}
+        Code Snippet: <Popover text={wordPoemCode} />{" "}
       </Typography>
     </React.Fragment>
-  )
+  );
 }
 
 Poem.propTypes = {
-  classes: PropTypes.object.isRequired
-}
+  classes: PropTypes.object.isRequired,
+};
 
-export default withStyles(styles)(Poem)
+export default withStyles(styles)(Poem);
