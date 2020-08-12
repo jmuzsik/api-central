@@ -21,10 +21,8 @@ app.set('port', port);
  * Create HTTPS server.
  */
 
-const server = https.createServer({
-  key: fs.readFileSync('server.key'),
-  cert: fs.readFileSync('server.cert')
-}, app)
+
+var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
