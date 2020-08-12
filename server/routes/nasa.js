@@ -11,6 +11,15 @@ router.get('/daily-nasa', async function(req, res) {
     console.log(error);
     return res.send({error: true})    
   }
+  console.log('hi')
+  try {
+    data = await rp(`https://35.192.94.107:3333/hewitt/rothko`);
+    console.log(data)
+  } catch (error) {
+    console.log(error);
+    return res.send({error: true})    
+  }
+  console.log(data)
   return res.send(data);
 });
 

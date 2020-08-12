@@ -39,21 +39,21 @@ const randomWordDefault = {
 };
 
 function fetchUserWords(words) {
-  return fetch("/words/words", {
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, *cors, same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: 'same-origin', // include, *same-origin, omit
+  return fetch("http://35.192.94.107:3333/words/words", {
+    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, *cors, same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
       // 'Content-Type': 'application/x-www-form-urlencoded',
     },
-    redirect: 'follow', // manual, *follow, error
+    redirect: "follow", // manual, *follow, error
     body: JSON.stringify({ words }),
   });
 }
 function fetchRandomWord() {
-  return fetch("/words/random");
+  return fetch("http://35.192.94.107:3333/words/random");
 }
 
 function userWords(data) {

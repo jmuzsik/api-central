@@ -25,11 +25,11 @@ const dailyNASADefault = {
 };
 
 function fetchLatestHubble() {
-  return fetch("/nasa/daily-hubble");
+  return fetch("http://35.192.94.107:3333/nasa/daily-hubble");
 }
 
 function fetchDailyNASA() {
-  return fetch("/nasa/daily-nasa");
+  return fetch("http://35.192.94.107:3333/nasa/daily-nasa");
 }
 
 function latestHubble(data) {
