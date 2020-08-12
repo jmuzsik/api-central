@@ -25,14 +25,14 @@ const dailyNASADefault = {
 };
 
 function fetchLatestHubble() {
-  return fetch("http://35.192.94.107:3333/nasa/daily-hubble", {
+  return fetch("https://35.192.94.107:3333/nasa/daily-hubble", {
     mode: "cors",
     cache: "default",
   });
 }
 
 function fetchDailyNASA() {
-  return fetch("http://35.192.94.107:3333/nasa/daily-nasa", {
+  return fetch("https://35.192.94.107:3333/nasa/daily-nasa", {
     mode: "cors",
     cache: "default",
   });
