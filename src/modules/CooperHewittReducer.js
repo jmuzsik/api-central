@@ -61,7 +61,12 @@ const randomVideoDefault = {
 }
 
 function fetchRandomObject() {
-  return fetch('http://35.192.94.107:3333/hewitt/object');
+  return fetch('http://35.192.94.107:3333/hewitt/object',
+  {
+    mode: 'cors',
+    cache: 'default',
+  }
+  );
 }
 function fetchWhatWouldMicahSay() {
   return fetch('http://35.192.94.107:3333/hewitt/micah');
