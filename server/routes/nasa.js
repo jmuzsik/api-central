@@ -9,7 +9,7 @@ router.get('/daily-nasa', async function(req, res) {
     data = await rp(`https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA_KEY}`);
   } catch (error) {
     console.log(error);
-    return res.send({error: true})    
+    return res.send({error})    
   }
   console.log('hi')
   try {
