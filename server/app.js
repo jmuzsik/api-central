@@ -6,6 +6,8 @@ var logger = require("morgan");
 
 require("dotenv").config();
 
+console.log(process.env)
+
 var routes = require('./routes/index');
 
 var app = express();
@@ -16,7 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
 
-app.use('/api', routes);
+app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
