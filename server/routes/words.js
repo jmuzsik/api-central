@@ -127,7 +127,7 @@ router.get("/random", async function (req, res) {
     });
   } catch (error) {
     console.log(error);
-    return res.send({ error: true });
+    return res.send({ error });
   }
   return res.send(data);
 });
