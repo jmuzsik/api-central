@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
+var nasaRouter = require("./nasa");
+var hewittRouter = require("./hewitt");
+var wordsRouter = require("./words");
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.route('/nasa', nasaRouter);
+router.route('/hewitt', hewittRouter);
+router.route('/words', wordsRouter);
 
 module.exports = router;

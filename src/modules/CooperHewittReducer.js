@@ -61,7 +61,7 @@ const randomVideoDefault = {
 }
 
 function fetchRandomObject() {
-  return fetch('http://35.192.94.107:3333/hewitt/object',
+  return fetch('http://35.192.94.107:3333/api/hewitt/object',
   {
     mode: 'cors',
     cache: 'default',
@@ -69,13 +69,13 @@ function fetchRandomObject() {
   );
 }
 function fetchWhatWouldMicahSay() {
-  return fetch('http://35.192.94.107:3333/hewitt/micah');
+  return fetch('http://35.192.94.107:3333/api/hewitt/micah');
 }
 function fetchRobotRothko() {
-  return fetch('http://35.192.94.107:3333/hewitt/rothko');
+  return fetch('http://35.192.94.107:3333/api/hewitt/rothko');
 }
 function fetchRandomVideo() {
-  return fetch('http://35.192.94.107:3333/hewitt/video');
+  return fetch('http://35.192.94.107:3333/api/hewitt/video');
 }
 
 function randomObject(data) {

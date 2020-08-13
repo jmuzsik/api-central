@@ -39,7 +39,7 @@ const randomWordDefault = {
 };
 
 function fetchUserWords(words) {
-  return fetch("http://35.192.94.107:3333/words/words", {
+  return fetch("http://35.192.94.107:3333/api/words/words", {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
     mode: "cors", // no-cors, *cors, same-origin
     cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -53,7 +53,7 @@ function fetchUserWords(words) {
   });
 }
 function fetchRandomWord() {
-  return fetch("http://35.192.94.107:3333/words/random");
+  return fetch("http://35.192.94.107:3333/api/words/random");
 }
 
 function userWords(data) {

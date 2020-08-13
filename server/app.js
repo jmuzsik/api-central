@@ -7,10 +7,7 @@ var logger = require("morgan");
 
 require("dotenv").config();
 
-var indexRouter = require("./routes/index");
-var nasaRouter = require("./routes/nasa");
-var hewittRouter = require("./routes/hewitt");
-var wordsRouter = require("./routes/words");
+var router = require("./routes/index");
 
 var app = express();
 // view engine setup
@@ -23,10 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
 
-app.use("/", indexRouter);
-app.use("/nasa", nasaRouter);
-app.use("/hewitt", hewittRouter);
-app.use("/words", wordsRouter);
+app.use('/api', router);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
