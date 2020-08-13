@@ -1,5 +1,5 @@
 [[redirects]]
-  from = "/search"
+  from = "/api"
   to = "http://35.192.94.107:3333/api/"
   status = 200
   force = true # COMMENT: ensure that we always redirect
