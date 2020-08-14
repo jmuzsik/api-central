@@ -6,8 +6,6 @@ var logger = require("morgan");
 
 require("dotenv").config();
 
-console.log(process.env)
-
 var routes = require('./routes/index');
 
 var app = express();
