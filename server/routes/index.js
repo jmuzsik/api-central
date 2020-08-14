@@ -4,8 +4,8 @@ var nasaRouter = require("./nasa");
 var hewittRouter = require("./hewitt");
 var wordsRouter = require("./words");
 
-router.use('/api/nasa', nasaRouter);
-router.use('/api/hewitt', hewittRouter);
-router.use('/api/words', wordsRouter);
+router.use('/nasa', nasaRouter);
+router.use('/hewitt', hewittRouter);
+router.use('/words', wordsRouter);
 
 module.exports = router;
