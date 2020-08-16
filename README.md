@@ -1,13 +1,5 @@
-# RESTful API's
+# An app playing with some API's
 
-## Working with REST API's and displaying data
+Some sort of app I made to try out Material UI react and a few API's ([Cooper Hewitt](https://collection.cooperhewitt.org/api/), [Words](https://www.wordsapi.com/), [NASA](https://api.nasa.gov/))
 
-Extremely complicated application
-
-### You have to check it out, it's mind blowing
-
-[alltheapis.com](https://alltheapis.com)
-
-#### In the very least, you have to check out the random rothko art generator:
-
-[alltheapis.com/cooper-hewitt](https://alltheapis.com/cooper-hewitt)
+- Here's the site: [right here](http://35.192.94.107:3333/)
